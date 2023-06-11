@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Form Elements 2</title>
+
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> 
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!--<link rel="stylesheet" href="css/uploadimage-style.css">-->
+
+    <!--awesome font cdn-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+    
+    <style>
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+input[type=text], select, textarea, input[type=tel],
+input[type=password], input[type=date], 
+input[type=email]
+{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #536cdd;
+  
+  resize: vertical;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 260px 1fr ;
+  
+  grid-template-areas:
+    "sidebar header header header"
+    "sidebar main";
+  height: 100vh;
+}
+
+/*label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}*/
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+.main-container{
+    background-color: #e6e3e3;
+    width: 100%;
+}
+
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: #000;
+}
+
+.col-half {
+  float: left;
+  width: 50%;
+  margin-top: 6px;
+  padding-right: 20px;
+}
+
+.col-full {
+  float: left;
+  width: 100%;
+  margin-top: 6px;
+  padding-right: 20px;
+}
+
+.col-q{
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+  padding-right: 20px;
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  input[type=submit], input[type=reset]
+  {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+/* The message box is shown when the user clicks on the password field */
+#message {
+  display:none;
+  background: #f1f1f1;
+  color: #000;
+  position: relative;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+#message p {
+  padding: 10px 35px;
+  font-size: 18px;
+}
+#message2 {
+  display:none;
+  background: #f1f1f1;
+  color: #000;
+  position: relative;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+#message2 p {
+  padding: 2px 3px;
+  font-size: 18px;
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+  color: green;
+}
+
+.valid:before {
+  position: relative;
+  left: -35px;
+  content: "✔";
+}
+
+/* Add a red text color and an "x" icon when the requirements are wrong */
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  position: relative;
+  left: -35px;
+  content: "✖";
+}
+
+
+
+/*new*/
+.input-container {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.icon {
+  padding: 10px;
+  border: 1px solid #536cdd;
+  
+  color: #536cdd;
+  min-width: 50px;
+  text-align: center;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+
+.input-field:focus {
+  border:2px solid dodgerblue;
+}
+
+
+/*date of birth style start*/
+fieldset {
+  border: none;
+  background: #efefef;
+}
+
+.date-field {
+  width: 30px;
+  text-align: center;
+  
+  &--year {
+    width: 60px;
+  }
+}
+
+.field-inline-block {
+  display: inline-block;
+  margin-right: 5px;
+  margin-left: 5px;  
+  
+}
+/*date of birth style end*/
+
+/*reset buttom style start*/
+.button{background-color: #536cdd; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;}
+
+/*reset buttom style end*/
+
+
+/*Upload Image Style Start*/
+.image-container{
+width: 50%;
+background-color: #ffffff;
+min-width: 450px;
+position: relative;
+padding: 50px 30px;
+box-shadow: 0 20px 35px rgba(0,0,0,0.15);
+border-radius: 7px;
+justify-content: center;
+margin:auto;
+}
+
+
+.up-image-container{
+  width: 90%;
+  margin: 0 auto 30px auto;
+}
+
+.up-image-container img{
+  display: block;
+  position: relative;
+  max-width: 100%;
+  max-height: 400px;
+  margin:auto;
+
+
+}
+figcaption{
+  margin: 20px 0 30px 0;
+  text-align: center;
+  color: #2a292a;
+}
+input[type=file]
+{
+  display: none;
+}
+#Lable{
+  display: block;
+  position: relative;
+  background-color: #536cdd;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  width: 300px;
+  padding: 18px 0;
+  border-radius: 5px;
+  margin: auto;
+  cursor: pointer;
+ }
+
+#Lable :disabled{
+  opacity: 0.3;
+}
+
+
+#preview-image {
+  width: auto;
+  height: auto;
+  cursor: pointer;
+}
+
+#remove-image {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+}
+/*Upload Image Style End*/
+
+
+
+
+/*Checkbox style start*/
+
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox-container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox-container input:checked ~ .checkmark {
+  background-color: #536cdd;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox-container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+/*Checkbox style end*/
+
+/*Radio Button Style Start*/
+.radiobtn-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.radiobtn-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.Checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.radiobtn-container:hover input ~ .Checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.radiobtn-container input:checked ~ .Checkmark {
+  background-color: #536cdd;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.Checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.radiobtn-container input:checked ~ .Checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.radiobtn-container .Checkmark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+/*Radio Button Style End*/
+
+/*custome select style start*/
+/*the container must be positioned relative:*/
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+  background-color: #536cdd;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: #536cdd;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* custom select style end*/
+
+
+/*Select menu start*/
+#select{
+  width: 100%;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+}
+/*select menu end*/
+
+</style>
+</head>
+  <body>
+    <div class="grid-container">
+
+      <!-- Header -->
+      <header class="header">
+        <div class="menu-icon" onclick="openSidebar()">
+          <span class="material-icons-outlined">menu</span>
+        </div>
+        <div class="header-left">
+          <span class="material-icons-outlined">search</span>
+          
+        </div>
+        <div class="header-right">
+          <span class="material-icons-outlined">notifications</span>
+          <span class="material-icons-outlined">email</span>
+          <span class="material-icons-outlined">account_circle</span>
+        </div>
+      </header>
+      <!-- End Header -->
+
+      <!-- Sidebar -->
+      <aside id="sidebar">
+        <div class="sidebar-title">
+          <div class="sidebar-brand" >
+            DrutoSoft
+          </div>
+          <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+        </div>
+        <!--sidebar items start-->
+        <ul class="sidebar-list">
+          <li class="sidebar-list-item">
+            <a href="index.html" target="_blank" >
+              <span class="material-icons-outlined">dashboard</span> Dashboard
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">calendar_today</span> Calender
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">
+                location_on
+                </span> Map
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">
+                widgets
+                </span>Widgets
+            </a>
+          </li>
+          <li class="sidebar-list-item" style="background-color:#2c419e;">
+            <a href="forms.html" target="_blank">
+              <span class="material-icons-outlined">
+                list_alt
+                </span> Form Elements
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="charts.html" target="_blank">
+              <span class="material-icons-outlined">poll</span> Charts
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">
+                table_chart
+                </span> Tables
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">
+                verified_user
+                </span> Authentication
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">
+                email
+                </span> Email Template
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">
+                auto_stories
+                </span> Extra Pages
+            </a>
+          </li>
+
+        </ul>
+        
+      </aside>
+
+
+
+
+<main class="main-container">
+<div class="container" style="background-color: white;">
+  <div class="container" style="background-color: #2c419e; padding: 0px;" >
+    <h2 style="color: white; padding: 4px;">Forms</h2>
+  </div>
+  
+<p>Please fill in the information below. The field labels marked with * are required input fields.</p>
+
+<form action="/action_page.php" style="margin:auto;">
+    
+    <div class="row">
+        <div class="col-half">
+            <div class="input-container">
+                <i class="fa fa-user icon"></i>
+                <input class="input-field" type="text" placeholder="First Name" name="fname">
+              </div>
+        </div>
+        <div class="col-half">
+            <div class="input-container">
+                <i class="fa fa-user icon"></i>
+                <input class="input-field" type="text" placeholder="Last Name" name="lname">
+              </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-half">
+            <div class="input-container">
+                <i class="fa fa-envelope icon"></i>
+                <input class="input-field" type="email" placeholder="Email" name="email">
+              </div>
+        </div>
+        <div class="col-half">
+            <div class="input-container">
+                <i class="fa fa-phone icon"></i>
+                <input class="input-field" type="tel" placeholder="Phone" name="phone">
+              </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-half">
+            <div class="input-container">
+                <i class="fa fa-key icon"></i>
+                <input class="input-field" type="password" placeholder="Password" name="psw">
+              </div>
+        </div>
+        <div class="col-half">
+            <div class="input-container">
+                <i class="fa fa-key icon"></i>
+                <input class="input-field" type="password" placeholder="Confirm Password" name="psw-repeat">
+              </div>
+        </div>
+    </div>
+    
+
+
+
+    <div class="row">
+      <div class="col-full">
+        <p>Address</p>
+          <div class="input-container">
+              <textarea id="address" name="address" style="height:200px"></textarea>
+            </div>
+      </div>
+  </div>
+  
+
+    <div class="row">
+      <div class="col-half">
+
+        <!--Date of birth section start-->
+        <p><b>Date of Birth</b></p>
+        <section id="date-of-birth">
+          <fieldset>
+            <div class="field-inline-block">
+              <label style="padding: 12px 12px 12px 0;
+              display: inline-block">DD</label>
+              <input type="text" pattern="[0-9]*" maxlength="2" size="2" class="date-field" />
+            </div>
+            /
+            <div class="field-inline-block">
+              <label style="padding: 12px 12px 12px 0;
+              display: inline-block">MM</label>
+              <input type="text" pattern="[0-9]*" maxlength="2" size="2" class="date-field" />
+            </div>
+            /
+            <div class="field-inline-block">
+              <label style="padding: 12px 12px 12px 0;
+              display: inline-block">YYYY</label>
+              <input type="text" pattern="[0-9]*" maxlength="4" size="4" class="date-field date-field--year" />
+            </div>
+            <p><small>E.g. 26/05/2023</small></p>
+          </fieldset></section>
+      </div>
+      <!--Date of birth section end-->
+    </div>
+
+    <br>
+
+
+  
+    
+    
+    
+  
+<input type="reset" class="button" value="Reset">
+<input type="submit" class="button" style="background-color: #45a049;"value="Submit"> 
+</form>
+</div>
+
+
+<!--Upload Image Start-->
+<br>
+<div class="container" style="background-color: white; margin:auto;">
+  <div class="container" style="background-color: #2c419e; padding: 0px;" >
+    <h2 style="color: white; padding: 4px;">Upload Image</h2>
+  </div>
+<form action="/action_page.php" style="margin:auto;">
+  <div class="row">
+    <div class="col-full"style="background-color: #ffffff; margin:auto;">
+      <div id="photo-upload">
+      <div class="image-container">
+        <figure class="up-image-container">
+          <img id="preview-image" src="images/Images-rafiki.png" alt="Placeholder Image" >
+        </figure>
+
+        <input type="file" id="upload-input" accept="image/*" onchange="previewImage(event)">
+              <label for="upload-input" id="Lable">
+                <i class="fas fa-upload"></i> &nbsp;
+                Choose A Photo
+              </label>
+
+              <span id="remove-image" onclick="removePreview()">&#10006;</span>
+
+      </div>
+    </div>
+    </div>
+  </div>
+</form>
+</div>
+<!--Upload Image End-->
+
+<br>
+<form action="/action_page.php" style="margin:auto;">
+  <div class="row">
+    <div class="col-q">
+      <div class="container">
+        <p><b>Select Payment Method</b></p>
+      <label class="radiobtn-container">Visa
+        <input type="radio" checked="checked" name="radio">
+        <span class="Checkmark"></span>
+      </label>
+      <label class="radiobtn-container">Mastercard
+        <input type="radio" name="radio">
+        <span class="Checkmark"></span>
+      </label>
+      <label class="radiobtn-container">Apple Pay
+        <input type="radio" name="radio">
+        <span class="Checkmark"></span>
+      </label>
+      <label class="radiobtn-container">PayPal
+        <input type="radio" name="radio">
+        <span class="Checkmark"></span>
+      </label>
+      </div>
+    </div>
+
+    <div class="col-q">
+      <div class="container">
+        <p><b>Choose Your Skill</b></p>
+<label class="checkbox-container">HTML
+  <input type="checkbox" checked="checked">
+  <span class="checkmark"></span>
+</label>
+<label class="checkbox-container">PHP
+  <input type="checkbox">
+  <span class="checkmark"></span>
+</label>
+<label class="checkbox-container">JavaScript
+  <input type="checkbox">
+  <span class="checkmark"></span>
+</label>
+<label class="checkbox-container">Bootstrap
+  <input type="checkbox">
+  <span class="checkmark"></span>
+</label>
+      </div>
+    </div>
+
+    <div class="col-half">
+      <div class="container" style="padding-top: 5px;">
+        <p><b>Custom Select</b></p>
+        <div class="custom-select" style="width:200px;">
+          <select>
+            <option value="0">Select car:</option>
+            <option value="1">Audi</option>
+            <option value="2">BMW</option>
+            <option value="3">Citroen</option>
+            <option value="4">Ford</option>
+            <option value="5">Honda</option>
+            <option value="6">Jaguar</option>
+            <option value="7">Land Rover</option>
+            <option value="8">Mercedes</option>
+            <option value="9">Mini</option>
+            <option value="10">Nissan</option>
+            <option value="11">Toyota</option>
+            <option value="12">Volvo</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col-half">
+      <div class="container" style="padding-top:5px ;">
+        <p><b>Select Menu</b></p>
+        <select id="select" name="country">
+          <option value="au">Australia</option>
+          <option value="ca">Canada</option>
+          <option value="usa">USA</option>
+          </select>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+</main>
+
+      
+</div>
+    
+
+    <!-- Scripts -->
+    <!--<script>
+      var myInput = document.getElementById("psw");
+      var letter = document.getElementById("letter");
+      var capital = document.getElementById("capital");
+      var number = document.getElementById("number");
+      var length = document.getElementById("length");
+      
+      // When the user clicks on the password field, show the message box
+      myInput.onfocus = function() {
+        document.getElementById("message").style.display = "block";
+      }
+      
+      // When the user clicks outside of the password field, hide the message box
+      myInput.onblur = function() {
+        document.getElementById("message").style.display = "none";
+      }
+      
+      // When the user starts to type something inside the password field
+      myInput.onkeyup = function() {
+        // Validate lowercase letters
+        var lowerCaseLetters = /[a-z]/g;
+        if(myInput.value.match(lowerCaseLetters)) {
+          letter.classList.remove("invalid");
+          letter.classList.add("valid");
+        } else {
+          letter.classList.remove("valid");
+          letter.classList.add("invalid");
+      }
+      
+        // Validate capital letters
+        var upperCaseLetters = /[A-Z]/g;
+        if(myInput.value.match(upperCaseLetters)) {
+          capital.classList.remove("invalid");
+          capital.classList.add("valid");
+        } else {
+          capital.classList.remove("valid");
+          capital.classList.add("invalid");
+        }
+      
+        // Validate numbers
+        var numbers = /[0-9]/g;
+        if(myInput.value.match(numbers)) {
+          number.classList.remove("invalid");
+          number.classList.add("valid");
+        } else {
+          number.classList.remove("valid");
+          number.classList.add("invalid");
+        }
+      
+        // Validate length
+        if(myInput.value.length >= 8) {
+          length.classList.remove("invalid");
+          length.classList.add("valid");
+        } else {
+          length.classList.remove("valid");
+          length.classList.add("invalid");
+        }
+      }
+      
+      // When the user clicks on the password field, show the message box
+      var Confirm = document.getElementById("psw-repeat");
+      Confirm.onfocus = function() {
+        document.getElementById("message2").style.display = "block";
+      }
+      
+      // When the user clicks outside of the password field, hide the message box
+      Confirm.onblur = function() {
+        document.getElementById("message2").style.display = "none";
+      }
+      
+      function matchPassword() {  
+        var psw1 = document.getElementById("psw");  
+        var psw2 = document.getElementById("psw-repeat");  
+        if(psw1 != psw2)  
+        {   
+          alert("Passwords did not match");  
+        } else {  
+          alert("Password created successfully");  
+        }  
+      
+      
+      }
+      
+      
+      
+      
+      
+      
+      </script>-->
+    
+      <script>
+        jQuery(function($) {
+2
+  $('.radio-toggle').toggleInput();
+3
+});
+
+
+
+
+      </script>
+
+    <!-- Custom JS -->
+    <script src="js/scripts.js"></script>
+    <script src="js/upload-image.js"> </script>
+    <!--jquery for rafio button-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/jquery.toggleinput.js"></script>
+
+    <script>
+      function previewImage(event) {
+  var reader = new FileReader();
+  reader.onload = function() {
+    var output = document.getElementById('preview-image');
+    output.src = reader.result;
+    document.getElementById('remove-image').style.display = 'inline';
+  }
+  reader.readAsDataURL(event.target.files[0]);
+}
+
+function removePreview() {
+  var output = document.getElementById('preview-image');
+  output.src = "images/Images-rafiki.png"
+  document.getElementById('upload-input').value = '';
+  document.getElementById('remove-image').style.display = 'none';
+}
+
+    </script>
+
+    <script src="js/custom-select.js"></script>
+
+  </body>
+</html>

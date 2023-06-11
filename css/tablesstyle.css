@@ -1,0 +1,31 @@
+table{
+    border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+table, th, td {
+    border: 1px solid rgb(235, 235, 235);
+    
+  }
+
+th{
+    background-color: #3da29d;
+    color: rgb(253, 244, 244);
+    text-align: center;
+}
+
+
+th, td {
+    text-align: center;
+    padding: 8px;
+  }
+
+  .material-icons-outlined
+  {
+    padding: 3px;
+  }
+  
+
+  tr:nth-child(even){background-color: #ffffff}
